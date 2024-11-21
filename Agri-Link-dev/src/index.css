@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  font-family: "Sora";
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    display: none; 
+  }
+
+  .bottom-nav {
+    display: block; 
+  }
+}
+
+@media (min-width: 769px) {
+  .bottom-nav {
+    display: none; 
+  }
+}
+
