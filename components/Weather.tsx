@@ -6,7 +6,6 @@ import { faArrowLeft, faFrown } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import '../src/css/weather.css';
 
-// Define TypeScript types for the weather data
 interface WeatherData {
   name: string;
   sys: { country: string };
@@ -70,16 +69,19 @@ const Weather: React.FC = () => {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto bg-white border border-gray-200 rounded-lg shadow-md">
-      <Link to="/" className="flex items-center text-blue-500 hover:underline mb-4">
+    <div className="p-6 max-w-lg mx-auto bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl mt-8 animate-fadeIn">
+      <Link to="/" className="flex items-center text-green-600 hover:underline mb-6">
         <FontAwesomeIcon icon={faArrowLeft} size="lg" />
-        <span className="ml-2 text-green-600">Live Weather</span>
+        <span className="ml-2 font-semibold">Back to Home</span>
       </Link>
-      <h1 className="text-2xl font-bold mb-4 text-green-700">Live Weather</h1>
-      <div className="mb-4">
+      <h1 className="text-3xl font-extrabold mb-6 text-center text-green-700 tracking-tight">Live Weather</h1>
+      <div className="mb-6 flex items-center justify-center relative">
+        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" /></svg>
+        </span>
         <input
           type="text"
-          className="w-full p-2 border border-gray-300 rounded-lg"
+          className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-200 shadow focus:ring-2 focus:ring-green-400 focus:outline-none transition-all duration-200 bg-white text-gray-800 placeholder-gray-400"
           placeholder="Enter City Name..."
           value={input}
           onChange={(event) => setInput(event.target.value)}
@@ -87,39 +89,34 @@ const Weather: React.FC = () => {
         />
       </div>
       {weather.loading && (
-        <div className="flex justify-center items-center h-32">
-          <Oval color="black" height={100} width={100} />
+        <div className="flex flex-col items-center justify-center h-32 animate-pulse">
+          <Oval color="#22c55e" height={60} width={60} />
+          <span className="mt-2 text-green-600 font-semibold">Loading...</span>
         </div>
       )}
       {weather.error && (
-        <div className="flex flex-col items-center text-red-600 mb-4">
-          <FontAwesomeIcon icon={faFrown} size="lg" />
-          <span className="mt-2 text-lg">City not found</span>
+        <div className="flex flex-col items-center text-red-600 mb-4 animate-fadeIn">
+          <FontAwesomeIcon icon={faFrown} size="2x" />
+          <span className="mt-2 text-lg font-semibold">City not found</span>
         </div>
       )}
       {weather.data && weather.data.main && (
-        <div className="text-center">
-          <div className="mb-2">
-            <h2 className="text-xl font-semibold">
-              {weather.data.name}, <span>{weather.data.sys?.country}</span>
-            </h2>
-          </div>
-          <div className="mb-2">
-            <span className="text-gray-500">{toDateFunction()}</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <img
-              src={`https://openweathermap.org/img/wn/${weather.data.weather?.[0].icon}@2x.png`}
-              alt={weather.data.weather?.[0].description}
-              className="mb-2"
-            />
-            <span className="text-4xl font-bold">
-              {Math.round(weather.data.main.temp)}<sup className="text-xl">°C</sup>
-            </span>
-          </div>
-          <div className="text-gray-700 mt-2">
+        <div className="flex flex-col items-center text-center bg-gradient-to-br from-green-50 to-white rounded-xl p-6 shadow-inner animate-fadeIn">
+          <h2 className="text-2xl font-bold text-gray-800 mb-1">
+            {weather.data.name}, <span className="text-green-600">{weather.data.sys?.country}</span>
+          </h2>
+          <span className="text-gray-500 mb-2">{toDateFunction()}</span>
+          <img
+            src={`https://openweathermap.org/img/wn/${weather.data.weather?.[0].icon}@2x.png`}
+            alt={weather.data.weather?.[0].description}
+            className="mb-2 w-24 h-24 drop-shadow-lg"
+          />
+          <span className="text-5xl font-extrabold text-green-700 mb-1">
+            {Math.round(weather.data.main.temp)}<sup className="text-2xl">°C</sup>
+          </span>
+          <div className="text-gray-700 mt-2 text-lg font-medium">
             <p>{weather.data.weather?.[0].description.toUpperCase()}</p>
-            <p>Wind Speed: {weather.data.wind?.speed} m/s</p>
+            <p className="text-sm text-gray-500 mt-1">Wind Speed: {weather.data.wind?.speed} m/s</p>
           </div>
         </div>
       )}
