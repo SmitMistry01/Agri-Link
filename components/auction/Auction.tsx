@@ -95,7 +95,7 @@ const AuctionPage: React.FC = () => {
   });
 
   const handleAdd = () => {
-    navigate('/additems');
+    navigate('/add');
   };
 
   if (loading) {

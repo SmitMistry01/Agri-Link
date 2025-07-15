@@ -44,7 +44,7 @@ const App: React.FC = () => {
         <Route path="/myauctions" element={<MyAuctions/>} />
         <Route path="/auctions"element={<Auction/>} />
         <Route
-          path="/additems"
+          path="/add"
           element={
             <ProtectedRoute>
               <AddItem />
