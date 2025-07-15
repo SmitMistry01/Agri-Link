@@ -7,7 +7,7 @@ const Header: React.FC = () => {
       <div className="flex-1 flex justify-between items-center">
         <Link to="/">
           <img
-            src="../../src/assets/logo3.png"
+            src="../../src/assets/logo2.png"
             alt="Home"
             className="h-14 w-auto"
           />
