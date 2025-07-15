@@ -5,13 +5,7 @@ const Header: React.FC = () => {
   return (
     <header className="lg:px-16 px-4 bg-white flex flex-wrap items-center py-4 shadow-md">
       <div className="flex-1 flex justify-between items-center">
-        <Link to="/">
-          <img
-            src="../../src/assets/logo2.png"
-            alt="Home"
-            className="h-14 w-auto"
-          />
-        </Link>
+        
       </div>
 
       <div className="hidden md:flex flex-grow">
