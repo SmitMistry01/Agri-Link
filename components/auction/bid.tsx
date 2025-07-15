@@ -123,11 +123,11 @@ const PriceList: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto pb-[10%]">
       <ToastContainer />
-      <div className="p-4">
+      <div className="p-4 flex justify-center">
         <img
           src={auction.imageUrl}
           alt={auction.itemName}
-          className="w-full h-auto object-cover rounded-lg shadow-lg"
+          className="h-56 w-auto max-w-full object-cover rounded-lg shadow-lg mb-4"
         />
       </div>
 
@@ -180,7 +180,7 @@ const PriceList: React.FC = () => {
                     <td className="border px-4 py-2 text-center">
                       {index + 1}
                     </td>
-                    <td className="border px-</td>4 py-2 text-center">
+                    <td className="border px-4 py-2 text-center">
                       ₹{bid.bidAmount.toFixed(2)}
                     </td>
                     <td className="border px-4 py-2 text-center">
